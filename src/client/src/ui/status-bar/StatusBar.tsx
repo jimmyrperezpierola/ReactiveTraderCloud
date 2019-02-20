@@ -1,23 +1,25 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import React, { Component, useContext } from 'react'
 
 import { ConnectionState } from 'rt-system'
 import { ServiceStatus } from 'rt-types'
 import { Content, Fill, Header, Root, OpenFinLogoContainer } from './styled'
 import { OpenFinLogo } from './assets/OpenFinLogo'
-import { PlatformAdapter, withPlatform } from 'rt-components'
+import { PlatformContext } from 'rt-components'
 
-const Logo: React.SFC<{ platform: PlatformAdapter }> = ({ platform }) => (
-  <div>
-    {platform.name === 'openfin' && (
-      <OpenFinLogoContainer>
-        <OpenFinLogo />
-      </OpenFinLogoContainer>
-    )}
-  </div>
-)
+const Logo: React.SFC = () => {
+  const platform = useContext(PlatformContext)
 
-const LogoWithPlatform = withPlatform(Logo)
+  return (
+    <div>
+      {platform.name === 'openfin' && (
+        <OpenFinLogoContainer>
+          <OpenFinLogo />
+        </OpenFinLogoContainer>
+      )}
+    </div>
+  )
+}
 
 export default class StatusBar extends Component<
   {
@@ -32,7 +34,7 @@ export default class StatusBar extends Component<
         <Content expand={false}>
           <Header>
             <Fill />
-            <LogoWithPlatform />
+            <Logo />
             {this.props.children}
           </Header>
         </Content>

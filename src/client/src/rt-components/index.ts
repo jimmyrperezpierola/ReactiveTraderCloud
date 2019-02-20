@@ -4,6 +4,7 @@ import {
   PlatformAdapter,
   externalWindowDefault,
   PlatformProvider,
+  PlatformContext,
   WindowConfig,
   openFinNotifications,
   setupGlobalOpenfinNotifications,
@@ -14,6 +15,7 @@ export {
   withPlatform,
   externalWindowDefault,
   PlatformProvider,
+  PlatformContext,
   openFinNotifications,
   setupGlobalOpenfinNotifications,
 }

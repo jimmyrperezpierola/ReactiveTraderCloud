@@ -1,5 +1,5 @@
-import React from 'react'
-import { OpenFinChrome, OpenFinHeader, PlatformAdapter, withPlatform } from 'rt-components'
+import React, { useContext } from 'react'
+import { OpenFinChrome, OpenFinHeader, PlatformContext } from 'rt-components'
 import { styled } from 'rt-theme'
 
 const RouteStyle = styled.div`
@@ -13,23 +13,21 @@ const RouteStyle = styled.div`
   justify-content: center;
 `
 
-interface Props {
-  platform: PlatformAdapter
+const RouteWrapper: React.SFC = ({ children }) => {
+  const platform = useContext(PlatformContext)
+  console.log(platform)
+  return (
+    <RouteStyle>
+      {platform.name === 'openfin' ? (
+        <OpenFinChrome>
+          <OpenFinHeader close={platform.window.close} />
+          {children}
+        </OpenFinChrome>
+      ) : (
+        children
+      )}
+    </RouteStyle>
+  )
 }
-
-const RouteWrapperBase: React.SFC<Props> = ({ children, platform }) => (
-  <RouteStyle>
-    {platform.name === 'openfin' ? (
-      <OpenFinChrome>
-        <OpenFinHeader close={platform.window.close} />
-        {children}
-      </OpenFinChrome>
-    ) : (
-      children
-    )}
-  </RouteStyle>
-)
-
-const RouteWrapper = withPlatform(RouteWrapperBase)
 
 export { RouteStyle, RouteWrapper }
