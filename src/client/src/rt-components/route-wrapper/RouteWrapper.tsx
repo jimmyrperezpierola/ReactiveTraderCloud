@@ -15,7 +15,6 @@ const RouteStyle = styled.div`
 
 const RouteWrapper: React.SFC = ({ children }) => {
   const platform = useContext(PlatformContext)
-  console.log(platform)
   return (
     <RouteStyle>
       {platform.name === 'openfin' ? (

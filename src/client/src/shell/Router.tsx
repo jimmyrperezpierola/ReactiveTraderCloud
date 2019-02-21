@@ -6,7 +6,6 @@ import { AnalyticsRoute, BlotterRoute, OpenFinRoute, ShellRoute, SpotRoute } fro
 
 const ShellSwitchRoute = ({ header }: { header: React.ReactChild }) => {
   const platform = useContext(PlatformContext)
-
   return platform.name === 'openfin' ? <OpenFinRoute /> : <ShellRoute header={header} />
 }
 

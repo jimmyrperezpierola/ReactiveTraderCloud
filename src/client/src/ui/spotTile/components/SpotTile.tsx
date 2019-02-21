@@ -1,7 +1,7 @@
 /* tslint:disable */
 
 import numeral from 'numeral'
-import React, { PureComponent, useContext } from 'react'
+import React, { PureComponent } from 'react'
 import { CurrencyPair, Direction, ServiceConnectionStatus } from 'rt-types'
 import { createTradeRequest, DEFAULT_NOTIONAL, ExecuteTradeRequest, SpotTileData, TradeRequest } from '../model'
 import { spotDateFormatter } from '../model/dateUtils'
@@ -9,30 +9,24 @@ import NotionalInput from './notional'
 import PriceControls from './PriceControls'
 import { DeliveryDate, TileBaseStyle, TileHeader, TileSymbol } from './styled'
 import { styled } from 'rt-theme'
-import { PlatformAdapter, PlatformContext } from 'rt-components'
+import { PlatformAdapter, withPlatform } from 'rt-components'
 import { TopRightButton, BottomRightButton } from './TileControls'
 
-const SpotTileWrapper: React.SFC = ({ children }) => {
-  const platform = useContext(PlatformContext)
-
-  const SpotTileWrapperStyle = styled.div<{ platform: PlatformAdapter }>`
-    position: relative;
-    min-height: 10rem;
-    height: ${({ platform: { name } }) =>
-      name !== 'finsemble'
-        ? '100%'
-        : 'calc(100% - 25px)'}; // When loaded in Finsemble a 25px header is injected, this resets body to the correct height
-    &:hover ${TopRightButton} {
-      opacity: 0.75;
-    }
-    &:hover ${BottomRightButton} {
-      opacity: 0.75;
-    }
-    color: ${({ theme }) => theme.core.textColor};
-  `
-
-  return <SpotTileWrapperStyle platform={platform}>{children}</SpotTileWrapperStyle>
-}
+export const SpotTileWrapper = withPlatform(styled.div<{ platform: PlatformAdapter }>`
+  position: relative;
+  min-height: 10rem;
+  height: ${({ platform: { name } }) =>
+    name !== 'finsemble'
+      ? '100%'
+      : 'calc(100% - 25px)'}; // When loaded in Finsemble a 25px header is injected, this resets body to the correct height
+  &:hover ${TopRightButton} {
+    opacity: 0.75;
+  }
+  &:hover ${BottomRightButton} {
+    opacity: 0.75;
+  }
+  color: ${({ theme }) => theme.core.textColor};
+`)
 
 export const SpotTileStyle = styled(TileBaseStyle)`
   background-color: ${({ theme }) => theme.core.lightBackground};
