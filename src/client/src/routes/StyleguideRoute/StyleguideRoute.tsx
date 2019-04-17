@@ -4,7 +4,7 @@ import { styled, ThemeProvider } from 'rt-theme'
 
 import FloatingTools from './components/FloatingsTools'
 import { Block, SectionBlock } from './styled'
-
+import Collapser from './Collapser'
 import Atoms from './sections/Atoms'
 import ColorSpectrum from './sections/ColorSpectrum'
 import CoreBranding from './sections/CoreBranding'
@@ -31,16 +31,9 @@ const StyleguideRoute: React.FC = () => (
               <Section />
             </Route>
           ))}
-
-          <Route>
-            <React.Fragment>
-              {sections.map(({ path, Section }) => (
-                <Section key={path} />
-              ))}
-            </React.Fragment>
-          </Route>
         </Switch>
       </BrowserRouter>
+      <Collapser />
     </Root>
   </ThemeProvider>
 )
