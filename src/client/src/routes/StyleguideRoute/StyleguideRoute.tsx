@@ -1,10 +1,9 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+// import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { styled, ThemeProvider } from 'rt-theme'
 
 import FloatingTools from './components/FloatingsTools'
 import { Block, SectionBlock } from './styled'
-import Collapser from './Collapser'
 import Atoms from './sections/Atoms'
 import ColorSpectrum from './sections/ColorSpectrum'
 import CoreBranding from './sections/CoreBranding'
@@ -24,25 +23,15 @@ const StyleguideRoute: React.FC = () => (
   <ThemeProvider>
     <Root>
       <FloatingTools />
-      <BrowserRouter>
-        <Switch>
-          {sections.map(({ path, Section }) => (
-            <Route key={path} path={`/styleguide/${path}`}>
-              <Section />
-            </Route>
-          ))}
-        </Switch>
-      </BrowserRouter>
-      <Collapser />
+      <Introduction />
     </Root>
   </ThemeProvider>
 )
 
 export const Root = styled(Block)`
   min-height: 100%;
-  max-width: 100vw;
   overflow: hidden;
 `
 
 export default StyleguideRoute
-export { StyleguideRoute }
+export { StyleguideRoute, sections }

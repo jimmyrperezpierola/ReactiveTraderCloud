@@ -19,15 +19,12 @@ export const FloatingTools: React.FC = () => {
 
 const Root: React.FC = props => <Block bg={t => t.primary[2]} {...props} />
 
-const Bar = styled(props => <Block px={3} bg={t => t.primary[1]} fg={t => t.secondary[3]} {...props} />)`
-  position: fixed;
+const Bar = styled(props => (
+  <Block px={3} bg={t => t.primary[1]} fg={t => t.secondary[3]} {...props} />
+))`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
   opacity: 0.85;
   min-height: 2.5rem;
   max-height: 2.5rem;
