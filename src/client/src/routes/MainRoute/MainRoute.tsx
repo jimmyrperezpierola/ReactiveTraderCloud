@@ -31,12 +31,6 @@ const store = configureStore(
 )
 
 setupWorkspaces(store)
-  .then(successVal => {
-    console.info('setupWorkspaces success', successVal)
-  })
-  .catch(err => {
-    console.error('setupWorkspaces error', err)
-  })
 
 store.dispatch(ConnectionActions.connect())
 

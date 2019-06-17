@@ -6,15 +6,23 @@ import { fromEventPattern } from 'rxjs'
 import { excelAdapter } from './excel'
 import { CurrencyPairPositionWithPrice } from 'rt-types'
 import { LayoutActions } from '../../../../shell/layouts/layoutActions'
-import { workspaces } from 'openfin-layouts'
+
 import { Notification, NotificationButtonClickedEvent } from 'openfin-notifications'
 import { NotificationMessage } from '../browser/utils/sendNotification'
 
+let workspaces: any
+// @ts-ignore
+export const isFinsemble = typeof fin !== 'undefined' && fin.container === 'Electron'
+if (!isFinsemble) {
+  import('openfin-layouts').then(works => {
+    workspaces = works
+  })
+}
+
 export async function setupWorkspaces(store: Store) {
-  if (typeof fin !== 'undefined') {
-    await workspaces.setRestoreHandler((workspace: workspaces.WorkspaceApp) =>
-      appRestoreHandler(workspace, store),
-    )
+  console.log(workspaces)
+  if (typeof fin !== 'undefined' && workspaces) {
+    await workspaces.setRestoreHandler((workspace: any) => appRestoreHandler(workspace, store))
     await workspaces.ready()
   }
 }
@@ -168,11 +176,11 @@ export default class OpenFin extends BasePlatformAdapter {
   }
 }
 
-async function appRestoreHandler(workspaceApp: workspaces.WorkspaceApp, store: Store) {
+async function appRestoreHandler(workspaceApp: any, store: Store) {
   const ofApp = await fin.Application.getCurrent()
   const openWindows = await ofApp.getChildWindows()
 
-  const opened = workspaceApp.childWindows.map(async (win: workspaces.WorkspaceWindow) => {
+  const opened = workspaceApp.childWindows.map(async (win: any) => {
     if (!openWindows.some(w => w.identity.name === win.name)) {
       const config: WindowConfig = {
         name: win.name,
@@ -209,7 +217,7 @@ async function appRestoreHandler(workspaceApp: workspaces.WorkspaceApp, store: S
   return workspaceApp
 }
 
-async function positionWindow(win: workspaces.WorkspaceWindow): Promise<void> {
+async function positionWindow(win: any): Promise<void> {
   try {
     const { isShowing, isTabbed } = win
 

@@ -1,6 +1,9 @@
 import { Browser, Finsemble, OpenFin, PlatformAdapter } from './adapters'
 
-const isFinsemble = 'FSBL' in window
+// @ts-ignore
+export const isFinsemble =
+  // @ts-ignore
+  typeof fin !== 'undefined' && fin.container && fin.container === 'Electron'
 const isOpenFin = typeof fin !== 'undefined'
 
 const getPlatform: () => PlatformAdapter = () => {
