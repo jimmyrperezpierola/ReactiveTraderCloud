@@ -10,6 +10,7 @@ import BlotterHeader from './BlotterHeader'
 import { columnDefinitions, DEFAULT_COLUMN_DEFINITION, csvExportSettings } from './blotterUtils'
 
 export interface BlotterProps {
+  symbol?: string
   rows: Trade[]
   canPopout: boolean
   onPopoutClick?: () => void
@@ -61,7 +62,7 @@ const getRowClass = ({ data }: { data: Trade }) => {
 }
 
 const Blotter: React.FC<BlotterProps> = props => {
-  const { canPopout, rows, onPopoutClick } = props
+  const { canPopout, rows, onPopoutClick, symbol } = props
   const [displayedRows, setDisplayedRows] = useState(0)
   const [gridDoc] = useState(React.createRef<HTMLDivElement>())
   const [gridApi, setGridApi] = useState(null)
@@ -86,6 +87,7 @@ const Blotter: React.FC<BlotterProps> = props => {
   return (
     <BlotterStyle>
       <BlotterHeader
+        symbol={symbol}
         canPopout={canPopout}
         onPopoutClick={onPopoutClick}
         onExportToExcelClick={exportToExcel}

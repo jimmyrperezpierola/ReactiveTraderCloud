@@ -8,6 +8,7 @@ import BlotterToolbar from './toolbar/BlotterToolbar'
 import ExcelButton from './toolbar/ExcelButton'
 
 interface Props {
+  symbol?: string
   canPopout: boolean
   onPopoutClick: (x: number, y: number) => void
   onExportToExcelClick: () => void
@@ -44,7 +45,13 @@ const Fill = styled.div`
   height: 1rem;
 `
 
-const BlotterHeader: FC<Props> = ({ gridApi, canPopout, onExportToExcelClick, onPopoutClick }) => {
+const BlotterHeader: FC<Props> = ({
+  gridApi,
+  canPopout,
+  onExportToExcelClick,
+  onPopoutClick,
+  symbol,
+}) => {
   const popoutClickHandler = useCallback(
     event => {
       onPopoutClick(event.screenX, event.screenY)
@@ -79,7 +86,7 @@ const BlotterHeader: FC<Props> = ({ gridApi, canPopout, onExportToExcelClick, on
 
   return (
     <BlotterHeaderStyle>
-      <BlotterLeft>Executed Trades</BlotterLeft>
+      <BlotterLeft>Executed Trades{` ${symbol}`}</BlotterLeft>
       <BlotterRight>
         <ExcelButton onClick={onExportToExcelClick} />
         <BlotterToolbar

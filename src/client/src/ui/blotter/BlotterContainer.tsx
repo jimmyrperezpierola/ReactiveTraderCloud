@@ -6,9 +6,10 @@ import { Environment } from 'rt-system'
 import { GlobalState } from 'StoreTypes'
 import { BlotterActions } from './actions'
 import Blotter from './components'
-import { selectBlotterRows, selectBlotterStatus } from './selectors'
+import { selectBlotterRows, selectBlotterRowsForSymbol, selectBlotterStatus } from './selectors'
 
 interface BlotterContainerOwnProps {
+  symbol?: string
   onPopoutClick?: () => void
   tornOff?: boolean
   tearable?: boolean
@@ -40,10 +41,12 @@ const BlotterContainer: React.FC<BlotterContainerProps> = ({
   />
 )
 
-const mapStateToProps = (state: GlobalState) => ({
-  rows: selectBlotterRows(state),
-  status: selectBlotterStatus(state),
-})
+const mapStateToProps = (state: GlobalState, props: BlotterContainerOwnProps) => {
+  return {
+    rows: props.symbol ? selectBlotterRowsForSymbol(state, props.symbol) : selectBlotterRows(state),
+    status: selectBlotterStatus(state),
+  }
+}
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   onMount: () => dispatch(BlotterActions.subscribeToBlotterAction()),
