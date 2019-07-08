@@ -7,7 +7,7 @@ exports.config = {
   allScriptsTimeout: 100000,
   framework: 'jasmine',
   directConnect: true,
-  specs: ['tmp/*.js'],
+  specs: ['tmp/*/*.js'],
   multiCapabilities: [{
     browserName: 'chrome',
     chromeOptions: {
