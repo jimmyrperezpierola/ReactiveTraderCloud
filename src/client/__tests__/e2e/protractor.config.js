@@ -11,7 +11,7 @@ exports.config = {
   multiCapabilities: [{
     browserName: 'chrome',
     chromeOptions: {
-      args: ['--start-maximized', '--disable-infobars', '--disable-notifications', '--no-sandbox']
+      args: ['--start-maximized', '--disable-infobars', '--disable-notifications', '--headless', '--no-sandbox']
     }
   }],
   jasmineNodeOpts: {
@@ -46,6 +46,6 @@ exports.config = {
     }))
   },
   params: {
-    reactiveTraderCloud: 'http://localhost:3000/'
+    baseUrl: 'http://localhost:3000/'
   }
 }

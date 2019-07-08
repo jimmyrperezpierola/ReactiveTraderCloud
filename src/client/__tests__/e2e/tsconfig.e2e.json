@@ -9,6 +9,6 @@
     "declaration": false,
     "noImplicitAny": false,
     "outDir": "tmp",
-    "types": ["node", "jasmine", "jasminewd2"]
+    "types": ["node", "jest"]
   }
 }
