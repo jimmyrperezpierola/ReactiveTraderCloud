@@ -7,11 +7,11 @@ exports.config = {
   allScriptsTimeout: 100000,
   framework: 'jasmine',
   directConnect: true,
-  specs: ['tests/**/*.js'],
+  specs: ['tmp/*.js'],
   multiCapabilities: [{
     browserName: 'chrome',
     chromeOptions: {
-      args: ['--start-maximized', '--disable-infobars', '--disable-notifications', '--headless', '--no-sandbox']
+      args: ['--start-maximized', '--disable-infobars', '--disable-notifications', '--no-sandbox']
     }
   }],
   jasmineNodeOpts: {
@@ -49,4 +49,3 @@ exports.config = {
     reactiveTraderCloud: 'http://localhost:3000/'
   }
 }
-© 2019 GitHub, Inc.

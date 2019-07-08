@@ -9,7 +9,6 @@
     "declaration": false,
     "noImplicitAny": false,
     "outDir": "tmp",
-    "types": ["node", "jasmine", "jasminewd2"],
-  },
-  "exclude": ["node_modules", "src", "jest"]
+    "types": ["node", "jasmine", "jasminewd2"]
+  }
 }
