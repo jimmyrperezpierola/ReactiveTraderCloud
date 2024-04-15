@@ -63,7 +63,7 @@
     "d3": "3.5.12",
     "d3-time-format": "2.0.5",
     "hoist-non-react-statics": "^2.5.5",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.17",
     "luxon": "^1.11.3",
     "moment": "^2.22.2",
     "openfin-fdc3": "^0.1.1",
